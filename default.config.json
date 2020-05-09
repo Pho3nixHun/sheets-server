@@ -1,0 +1,18 @@
+{
+    "CREDENTIALS": null,
+    "SPREADSHEETID": null,
+    "SPREADSHEETRANGE": null,
+    "FILEID": null,
+    "PORT": 3000,
+    "HOST": "127.0.0.1",
+    "TOKEN_FOLDER": "./persistent/",
+    "DATAPATH": "/data",
+    "CACHE_TIMEOUT": 600000,
+    "CORS": false,
+    "LOGFORMAT": "combined",
+    "FROM_EMAIL": "the-king@phoenixgroup.hu",
+    "TECHNICAL_EMAIL": "geeks@phoenixgroup.hu",
+    "SALES_EMAIL": "prics@phoenixgroup.hu",
+    "HOSTNAME": "phoenixgroup.hu",
+    "WEBPROTOCOL": "https"
+}

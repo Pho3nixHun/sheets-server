@@ -1,0 +1,42 @@
+{
+  "name": "store",
+  "version": "1.0.0",
+  "description": "A webstore REST server by Phöenix Group LLC.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pho3nixHun/sheets-server.git"
+  },
+  "keywords": [
+    "google",
+    "sheets",
+    "store",
+    "webshop",
+    "rest",
+    "restfull",
+    "barion",
+    "order",
+    "product",
+    "payment",
+    "backend"
+  ],
+  "author": "László Simon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pho3nixHun/sheets-server/issues"
+  },
+  "homepage": "https://github.com/Pho3nixHun/sheets-server#readme",
+  "dependencies": {
+    "app-module-path": "^2.2.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "googleapis": "^42.0.0",
+    "morgan": "^1.9.1",
+    "node-barion": "^2.0.0",
+    "node-fetch": "^2.6.0"
+  }
+}
