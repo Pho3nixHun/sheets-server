@@ -1,11 +1,11 @@
 const express = require('express');
 const GoogleService = require('services/google')();
 
-module.exports = () => {
+module.exports = (url) => {
     let router = express.Router();
 
     if (!GoogleService.initialized) {
-        const authUrl = GoogleService.generateAuthUrl('https://dev.phoenixgroup.hu/auth');
+        const authUrl = GoogleService.generateAuthUrl(`${url}/auth`);
         router.get('/auth', (req, res) => {
             const { code } = req.query || {};
             GoogleService.retrieveToken(code).then(() => {

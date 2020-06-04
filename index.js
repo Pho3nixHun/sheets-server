@@ -6,39 +6,47 @@ const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
 
-const defaultConfig = require('default.config.json');
-const config = require('lib/env-parser')(process.env, defaultConfig);
+const CONFIG = require(process.env.SHEETS_SERVER_CONFIG);
+
+const GOOGLE_CREDENTIALS = require(
+    path.join(
+        CONFIG['persistent-storage'],
+        CONFIG['google-credentials-file']
+    )
+);
+const TOKEN_PATH = path.join(
+    CONFIG['persistent-storage'],
+    CONFIG['google-refreshtoken-file']
+);
 
 // Init GoogleService
 require('services/google')({
-    credentials: JSON.parse(config.CREDENTIALS).web,
-    tokenPath: path.join(config.TOKEN_FOLDER, 'auth_token.json')
+    credentials: GOOGLE_CREDENTIALS.web,
+    tokenPath: TOKEN_PATH
 });
 
 const basic = require('routes/basic')();
-const oauth = require('routes/oauth')();
+const oauth = require('routes/oauth')(CONFIG.url);
 const products = require('routes/products')({ 
-    spreadsheetId: config.SPREADSHEETID,
-    fileId: config.FILEID,
-    range: config.SPREADSHEETRANGE,
-    notificationResponseUrl: `${config.WEBPROTOCOL}://${config.HOSTNAME}/products/notification`
+    ...CONFIG.spreadsheet, 
+    notificationResponseUrl: `${CONFIG.url}/products/notification`
 });
 
-(async () => {
-    const logger = morgan(config.LOGFORMAT);
+(async ({ host, port, logformat, corsAllowed }) => {
+    const logger = morgan(logformat);
     const app = express();
     const root = express.Router();
     app.use(logger);
     root.use('/', basic);
 
-    if (config.CORS) root.use(cors());
+    corsAllowed && root.use(cors());
     app.use(root);
     app.use('/', oauth);
     app.use('/products', products);
-    app.listen(config.PORT, config.HOST, () => {
-        console.log(`Sheet-server listening on ${config.HOST}:${config.PORT}`);
+    app.listen(port, host, () => {
+        console.log(`Listening on ${host}:${port}.\n\tLog format: ${logformat}\n\tCors: ${corsAllowed}`);
     });
 
     return app;
 
-})();
+})(CONFIG.server);

@@ -1,0 +1,23 @@
+{
+    "persistent-storage": "/srv/persistent",
+    "google-credentials-file": "google-credentials.json",
+    "spreadsheet": {
+        "spreadsheetId": "#REQUIRED",
+        "range": "#REQUIRED",
+        "cacheTimeout": 300000,
+        "fileId": ""
+    },
+    "google-refreshtoken-file": "google-refreshtoken.json",
+    "email": {
+        "from": "#OPTIONAL",
+        "technical": "#OPTIONAL",
+        "sales": "#OPTIONAL"
+    },
+    "url": "http://example.com",
+    "server": {
+        "host": "127.0.0.1",
+        "port": 8080,
+        "logformat": "combined",
+        "corsAllowed": false
+    }
+}
