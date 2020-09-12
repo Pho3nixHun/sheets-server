@@ -38,6 +38,6 @@
     "googleapis": "^42.0.0",
     "morgan": "^1.9.1",
     "node-barion": "^2.0.0",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   }
 }
